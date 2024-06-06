@@ -44,7 +44,7 @@ public class NotifyMeService {
         // TODO: lab3
         //  Detect sentiment of translated message
 //  1. Detect sentiment of translated text.
-        String sentiment = sentimentDetector.detectSentiment("", translatedText);
+        String sentiment = sentimentDetector.detectSentiment(notifyMe.targetLc(), translatedText);
         String translatedSentiment = sentiment + ": " + translatedText;
         messageSender.send(translatedSentiment);
 
