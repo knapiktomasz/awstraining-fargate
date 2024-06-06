@@ -29,10 +29,10 @@ public class TranslatorImpl implements Translator {
     @Override
     public String translate(NotifyMeDO notifyMeDO) {
         AmazonTranslate translateClient = translatorConfig.getTranslateClient();
-        TranslateTextRequest translateTextRequest = new TranslateTextRequest()
-                .withText(notifyMeDO.text())
-                .withSourceLanguageCode(notifyMeDO.sourceLc())
-                .withTargetLanguageCode(notifyMeDO.targetLc());
+        TranslateTextRequest translateTextRequest = new TranslateTextRequest();
+        translateTextRequest.setText(notifyMeDO.text());
+        translateTextRequest.setSourceLanguageCode(notifyMeDO.sourceLc());
+        translateTextRequest.setTargetLanguageCode(notifyMeDO.targetLc());
 
         TranslateTextResult translateTextResult = translateClient.translateText(translateTextRequest);
         LOGGER.info("Text {} translated from: {} to: {} result: {}",notifyMeDO.text(), notifyMeDO.sourceLc(), notifyMeDO.targetLc(), translateTextResult.getTranslatedText());

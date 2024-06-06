@@ -34,9 +34,9 @@ public class SentimentDetectorImpl implements Sentiment {
     @Override
     public String detectSentiment(String language, String text) {
         AmazonComprehend amazonComprehend = comprehendSentimentConfig.configureComprehendClient();
-        DetectSentimentRequest detectSentimentRequest = new DetectSentimentRequest()
-                .withLanguageCode(language)
-                .withText(text);
+        DetectSentimentRequest detectSentimentRequest = new DetectSentimentRequest();
+                detectSentimentRequest.setLanguageCode(language);
+                detectSentimentRequest.setText(text);
         String sentiment = amazonComprehend.detectSentiment(detectSentimentRequest).getSentiment();
         LOGGER.info("Sentiment detected: {}", sentiment);
         return sentiment;
